@@ -1,0 +1,127 @@
+2026-06-20 22:47:55 | INFO     | __main__                       | ============================================================
+2026-06-20 22:47:55 | INFO     | __main__                       | P1 â€” HFC Anomaly Detection Model Training
+2026-06-20 22:47:55 | INFO     | __main__                       | ============================================================
+2026-06-20 22:47:55 | INFO     | __main__                       | Step 1 â€” Loading processed P1 train/test data
+2026-06-20 22:47:55 | INFO     | __main__                       |   Train: 191993 rows | anomalies: 31947 (16.6%)
+2026-06-20 22:47:55 | INFO     | __main__                       |   Test : 48007 rows | anomalies: 8053 (16.8%)
+2026-06-20 22:47:55 | INFO     | __main__                       | Step 2 â€” Feature scaling (fit on train only)
+2026-06-20 22:47:56 | INFO     | __main__                       |   Scaler fit on 191993 training samples
+2026-06-20 22:47:56 | INFO     | __main__                       | Step 3 â€” Training Isolation Forest (n_estimators=200)
+2026-06-20 22:47:58 | INFO     | __main__                       |   Isolation Forest trained on 191993 samples
+2026-06-20 22:47:58 | INFO     | __main__                       | Step 4 â€” Training Local Outlier Factor (n_neighbors=20, novelty=True)
+2026-06-20 22:50:20 | INFO     | __main__                       |   LOF trained on 191993 samples
+2026-06-20 22:50:20 | INFO     | __main__                       | Step 5 â€” Computing ensemble anomaly scores
+2026-06-20 22:51:01 | INFO     | __main__                       | Step 6 â€” Threshold optimisation (max F1 on anomaly class)
+2026-06-20 22:51:01 | INFO     | __main__                       |   Optimal threshold: 0.2735 | best F1: 0.4622
+2026-06-20 22:51:01 | INFO     | __main__                       | Step 7 â€” Evaluation
+2026-06-20 22:51:01 | INFO     | __main__                       |   ROC-AUC  : 0.7704
+2026-06-20 22:51:01 | INFO     | __main__                       |   Precision: 0.3772  (of flagged alerts, how many are real)
+2026-06-20 22:51:01 | INFO     | __main__                       |   Recall   : 0.5964  (of real anomalies, how many we caught)
+2026-06-20 22:51:01 | INFO     | __main__                       |   F1       : 0.4622
+2026-06-20 22:51:01 | INFO     | __main__                       |   Confusion matrix:
+2026-06-20 22:51:01 | INFO     | __main__                       |     TN=32025  FP=7929  (false alerts)
+2026-06-20 22:51:01 | INFO     | __main__                       |     FN=3250  TP=4803  (missed anomalies)
+2026-06-20 22:51:01 | INFO     | __main__                       |   Business read: catching 60% of real faults with 38% alert precision
+2026-06-20 22:51:01 | INFO     | __main__                       | Step 8 â€” Permutation feature importance
+2026-06-21 13:10:28 | INFO     | __main__                       | ============================================================
+2026-06-21 13:10:28 | INFO     | __main__                       | P1 — HFC Anomaly Detection Model Training
+2026-06-21 13:10:28 | INFO     | __main__                       | ============================================================
+2026-06-21 13:10:28 | INFO     | __main__                       | Step 1 — Loading processed P1 train/test data
+2026-06-21 13:10:29 | INFO     | __main__                       |   Train: 191993 rows | anomalies: 31947 (16.6%)
+2026-06-21 13:10:29 | INFO     | __main__                       |   Test : 48007 rows | anomalies: 8053 (16.8%)
+2026-06-21 13:10:29 | INFO     | __main__                       | Step 2 — Feature scaling (fit on train only)
+2026-06-21 13:10:29 | INFO     | __main__                       |   Scaler fit on 191993 training samples
+2026-06-21 13:10:29 | INFO     | __main__                       | Step 3 — Training Isolation Forest (n_estimators=200)
+2026-06-21 13:10:31 | INFO     | __main__                       |   Isolation Forest trained on 191993 samples
+2026-06-21 13:10:31 | INFO     | __main__                       | Step 4 — Training Local Outlier Factor (n_neighbors=20, novelty=True)
+2026-06-21 13:11:04 | INFO     | __main__                       |   LOF trained on 191993 samples
+2026-06-21 13:11:04 | INFO     | __main__                       | Step 5 — Computing ensemble anomaly scores
+2026-06-21 13:11:13 | INFO     | __main__                       | Step 6 — Threshold optimisation (max F1 on anomaly class)
+2026-06-21 13:11:13 | INFO     | __main__                       |   Optimal threshold: 0.2735 | best F1: 0.4622
+2026-06-21 13:11:13 | INFO     | __main__                       | Step 7 — Evaluation
+2026-06-21 13:11:13 | INFO     | __main__                       |   ROC-AUC  : 0.7704
+2026-06-21 13:11:13 | INFO     | __main__                       |   Precision: 0.3772  (of flagged alerts, how many are real)
+2026-06-21 13:11:13 | INFO     | __main__                       |   Recall   : 0.5964  (of real anomalies, how many we caught)
+2026-06-21 13:11:13 | INFO     | __main__                       |   F1       : 0.4622
+2026-06-21 13:11:13 | INFO     | __main__                       |   Confusion matrix:
+2026-06-21 13:11:13 | INFO     | __main__                       |     TN=32025  FP=7929  (false alerts)
+2026-06-21 13:11:13 | INFO     | __main__                       |     FN=3250  TP=4803  (missed anomalies)
+2026-06-21 13:11:13 | INFO     | __main__                       |   Business read: catching 60% of real faults with 38% alert precision
+2026-06-21 13:11:13 | INFO     | __main__                       | Step 8 — Permutation feature importance
+2026-06-21 13:13:13 | INFO     | __main__                       |   Top 5 features by importance drop:
+2026-06-21 13:13:13 | INFO     | __main__                       | Step 9 — Saving model artifacts
+2026-06-21 13:13:13 | INFO     | __main__                       |   Saved: p1_scaler.joblib
+2026-06-21 13:13:13 | INFO     | __main__                       |   Saved: p1_isolation_forest.joblib
+2026-06-21 13:13:13 | INFO     | __main__                       |   Saved: p1_lof.joblib
+2026-06-21 13:13:13 | INFO     | __main__                       |   Saved: p1_metrics.json
+2026-06-21 13:13:13 | INFO     | __main__                       | ============================================================
+2026-06-21 13:13:13 | INFO     | __main__                       | P1 training complete — ROC-AUC: 0.7704
+2026-06-21 13:13:13 | INFO     | __main__                       | ============================================================
+2026-06-21 13:13:55 | INFO     | __main__                       | ============================================================
+2026-06-21 13:13:55 | INFO     | __main__                       | P1 — HFC Anomaly Detection Model Training
+2026-06-21 13:13:55 | INFO     | __main__                       | ============================================================
+2026-06-21 13:13:55 | INFO     | __main__                       | Step 1 — Loading processed P1 train/test data
+2026-06-21 13:13:56 | INFO     | __main__                       |   Train: 191993 rows | anomalies: 31947 (16.6%)
+2026-06-21 13:13:56 | INFO     | __main__                       |   Test : 48007 rows | anomalies: 8053 (16.8%)
+2026-06-21 13:13:56 | INFO     | __main__                       | Step 2 — Feature scaling (fit on train only)
+2026-06-21 13:13:56 | INFO     | __main__                       |   Scaler fit on 191993 training samples
+2026-06-21 13:13:56 | INFO     | __main__                       | Step 3 — Training Isolation Forest (n_estimators=200)
+2026-06-21 13:13:58 | INFO     | __main__                       |   Isolation Forest trained on 191993 samples
+2026-06-21 13:13:58 | INFO     | __main__                       | Step 4 — Training Local Outlier Factor (n_neighbors=20, novelty=True)
+2026-06-21 13:14:25 | INFO     | __main__                       |   LOF trained on 191993 samples
+2026-06-21 13:14:25 | INFO     | __main__                       | Step 5 — Computing ensemble anomaly scores
+2026-06-21 13:14:31 | INFO     | __main__                       | Step 6 — Threshold optimisation (max F1 on anomaly class)
+2026-06-21 13:14:31 | INFO     | __main__                       |   Optimal threshold: 0.2735 | best F1: 0.4622
+2026-06-21 13:14:31 | INFO     | __main__                       | Step 7 — Evaluation
+2026-06-21 13:14:31 | INFO     | __main__                       |   ROC-AUC  : 0.7704
+2026-06-21 13:14:31 | INFO     | __main__                       |   Precision: 0.3772  (of flagged alerts, how many are real)
+2026-06-21 13:14:31 | INFO     | __main__                       |   Recall   : 0.5964  (of real anomalies, how many we caught)
+2026-06-21 13:14:31 | INFO     | __main__                       |   F1       : 0.4622
+2026-06-21 13:14:31 | INFO     | __main__                       |   Confusion matrix:
+2026-06-21 13:14:31 | INFO     | __main__                       |     TN=32025  FP=7929  (false alerts)
+2026-06-21 13:14:31 | INFO     | __main__                       |     FN=3250  TP=4803  (missed anomalies)
+2026-06-21 13:14:31 | INFO     | __main__                       |   Business read: catching 60% of real faults with 38% alert precision
+2026-06-21 13:14:31 | INFO     | __main__                       | Step 8 — Permutation feature importance
+2026-06-21 13:16:01 | INFO     | __main__                       |   Top 5 features by importance drop:
+2026-06-21 13:16:01 | INFO     | __main__                       | Step 9 — Saving model artifacts
+2026-06-21 13:16:01 | INFO     | __main__                       |   Saved: p1_scaler.joblib
+2026-06-21 13:16:01 | INFO     | __main__                       |   Saved: p1_isolation_forest.joblib
+2026-06-21 13:16:01 | INFO     | __main__                       |   Saved: p1_lof.joblib
+2026-06-21 13:16:01 | INFO     | __main__                       |   Saved: p1_metrics.json
+2026-06-21 13:16:01 | INFO     | __main__                       | ============================================================
+2026-06-21 13:16:01 | INFO     | __main__                       | P1 training complete — ROC-AUC: 0.7704
+2026-06-21 13:16:01 | INFO     | __main__                       | ============================================================
+2026-06-21 13:34:41 | INFO     | __main__                       | ============================================================
+2026-06-21 13:34:41 | INFO     | __main__                       | P1 — HFC Anomaly Detection Model Training
+2026-06-21 13:34:41 | INFO     | __main__                       | ============================================================
+2026-06-21 13:34:41 | INFO     | __main__                       | Step 1 — Loading processed P1 train/test data
+2026-06-21 13:34:41 | INFO     | __main__                       |   Train: 189185 rows | anomalies: 31446 (16.6%)
+2026-06-21 13:34:41 | INFO     | __main__                       |   Test : 47310 rows | anomalies: 7746 (16.4%)
+2026-06-21 13:34:41 | INFO     | __main__                       | Step 2 — Feature scaling (fit on train only)
+2026-06-21 13:34:41 | INFO     | __main__                       |   Scaler fit on 189185 training samples
+2026-06-21 13:34:41 | INFO     | __main__                       | Step 3 — Training Isolation Forest (n_estimators=200)
+2026-06-21 13:34:43 | INFO     | __main__                       |   Isolation Forest trained on 189185 samples
+2026-06-21 13:34:43 | INFO     | __main__                       | Step 4 — Training Local Outlier Factor (n_neighbors=20, novelty=True)
+2026-06-21 13:35:15 | INFO     | __main__                       |   LOF trained on 189185 samples
+2026-06-21 13:35:15 | INFO     | __main__                       | Step 5 — Computing ensemble anomaly scores
+2026-06-21 13:35:23 | INFO     | __main__                       | Step 6 — Threshold optimisation (max F1 on anomaly class)
+2026-06-21 13:35:23 | INFO     | __main__                       |   Optimal threshold: 0.2789 | best F1: 0.4475
+2026-06-21 13:35:23 | INFO     | __main__                       | Step 7 — Evaluation
+2026-06-21 13:35:23 | INFO     | __main__                       |   ROC-AUC  : 0.7648
+2026-06-21 13:35:23 | INFO     | __main__                       |   Precision: 0.3791  (of flagged alerts, how many are real)
+2026-06-21 13:35:23 | INFO     | __main__                       |   Recall   : 0.5457  (of real anomalies, how many we caught)
+2026-06-21 13:35:23 | INFO     | __main__                       |   F1       : 0.4474
+2026-06-21 13:35:23 | INFO     | __main__                       |   Confusion matrix:
+2026-06-21 13:35:23 | INFO     | __main__                       |     TN=32640  FP=6924  (false alerts)
+2026-06-21 13:35:23 | INFO     | __main__                       |     FN=3519  TP=4227  (missed anomalies)
+2026-06-21 13:35:23 | INFO     | __main__                       |   Business read: catching 55% of real faults with 38% alert precision
+2026-06-21 13:35:23 | INFO     | __main__                       | Step 8 — Permutation feature importance
+2026-06-21 13:37:08 | INFO     | __main__                       |   Top 5 features by importance drop:
+2026-06-21 13:37:08 | INFO     | __main__                       | Step 9 — Saving model artifacts
+2026-06-21 13:37:08 | INFO     | __main__                       |   Saved: p1_scaler.joblib
+2026-06-21 13:37:08 | INFO     | __main__                       |   Saved: p1_isolation_forest.joblib
+2026-06-21 13:37:08 | INFO     | __main__                       |   Saved: p1_lof.joblib
+2026-06-21 13:37:08 | INFO     | __main__                       |   Saved: p1_metrics.json
+2026-06-21 13:37:08 | INFO     | __main__                       | ============================================================
+2026-06-21 13:37:08 | INFO     | __main__                       | P1 training complete — ROC-AUC: 0.7648
+2026-06-21 13:37:08 | INFO     | __main__                       | ============================================================

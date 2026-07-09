@@ -1,0 +1,82 @@
+2026-06-20 22:53:23 | INFO     | __main__                       | ============================================================
+2026-06-20 22:53:23 | INFO     | __main__                       | P2 â€” Wi-Fi SARIMA Training
+2026-06-20 22:53:23 | INFO     | __main__                       | ============================================================
+2026-06-20 22:53:23 | INFO     | __main__                       | Step 1 â€” Loading processed Wi-Fi data
+2026-06-20 22:53:23 | INFO     | __main__                       |   Representative device: CUS-0011-LAP-02
+2026-06-20 22:53:23 | INFO     | __main__                       |   Train series: 1728 hours | Test series: 432 hours
+2026-06-20 22:53:23 | INFO     | __main__                       |   Train mean: 74.58 | std: 10.68
+2026-06-20 22:53:23 | INFO     | __main__                       | Step 2 â€” ADF stationarity test
+2026-06-20 22:53:23 | INFO     | __main__                       |   ADF statistic : -13.6053
+2026-06-20 22:53:23 | INFO     | __main__                       |   p-value       : 0.0000
+2026-06-20 22:53:23 | INFO     | __main__                       |   Stationary    : True (threshold p < 0.05)
+2026-06-20 22:53:23 | INFO     | __main__                       | Step 3 â€” SARIMA order selection
+2026-06-20 22:53:23 | INFO     | __main__                       |   Order    (p,d,q)     = (1, 0, 1)
+2026-06-20 22:53:23 | INFO     | __main__                       |   Seasonal (P,D,Q,m)  = (1, 1, 0, 24)
+2026-06-20 22:53:23 | INFO     | __main__                       |   Rationale:
+2026-06-20 22:53:23 | INFO     | __main__                       |     p=1: one AR lag captures short-term autocorrelation
+2026-06-20 22:53:23 | INFO     | __main__                       |     d=0: series stationary after seasonal differencing
+2026-06-20 22:53:23 | INFO     | __main__                       |     q=1: one MA term for residual smoothing
+2026-06-20 22:53:23 | INFO     | __main__                       |     P=1: seasonal AR term (weekly pattern)
+2026-06-20 22:53:23 | INFO     | __main__                       |     D=1: seasonal differencing removes weekly trend
+2026-06-20 22:53:23 | INFO     | __main__                       |     Q=0: seasonal MA not needed given P=1 fits well
+2026-06-20 22:53:23 | INFO     | __main__                       |     m=24: 24-hour seasonality (daily cycle)
+2026-06-20 22:53:23 | INFO     | __main__                       | Step 4 â€” Fitting SARIMA(1, 0, 1) Ã— (1, 1, 0, 24)
+2026-06-20 22:53:26 | INFO     | __main__                       |   AIC: 13318.27 | BIC: 13339.98 | Log-likelihood: -6655.14
+2026-06-20 22:53:26 | INFO     | __main__                       | Step 5 â€” Residual diagnostics (Ljung-Box test)
+2026-06-20 22:53:26 | INFO     | __main__                       |   Ljung-Box p-values (lags 10, 20): [0.0, 0.0]
+2026-06-20 22:53:26 | INFO     | __main__                       |   Residuals are white noise: False
+2026-06-20 22:53:26 | WARNING  | __main__                       |   Residuals show autocorrelation â€” model may underfit
+2026-06-20 22:53:26 | INFO     | __main__                       | Step 6 â€” 1-hour-ahead forecast evaluation
+2026-06-20 22:53:26 | INFO     | __main__                       |   MAE  : 8.5610  (avg error in score points)
+2026-06-20 22:53:26 | INFO     | __main__                       |   RMSE : 11.4112
+2026-06-20 22:53:26 | INFO     | __main__                       |   MAPE : 12.37%
+2026-06-20 22:53:26 | INFO     | __main__                       | Step 7 â€” Â±3Ïƒ breach detection evaluation
+2026-06-20 22:53:26 | INFO     | __main__                       |   Breach precision: 0.0000
+2026-06-20 22:53:26 | INFO     | __main__                       |   Breach recall   : 0.0000
+2026-06-20 22:53:26 | INFO     | __main__                       |   Breach F1       : 0.0000
+2026-06-20 22:53:26 | INFO     | __main__                       |   Business read: catching 0% of Wi-Fi degradations
+2026-06-20 22:53:26 | INFO     | __main__                       | Step 8 â€” Saving model artifacts
+2026-06-21 13:46:02 | INFO     | __main__                       | ============================================================
+2026-06-21 13:46:02 | INFO     | __main__                       | P2 — Wi-Fi SARIMA Training
+2026-06-21 13:46:02 | INFO     | __main__                       | ============================================================
+2026-06-21 13:46:02 | INFO     | __main__                       | Step 1 — Loading processed Wi-Fi data
+2026-06-21 13:46:02 | INFO     | __main__                       |   Representative device: CUS-0011-LAP-02
+2026-06-21 13:46:02 | INFO     | __main__                       |   Train series: 1728 hours | Test series: 432 hours
+2026-06-21 13:46:02 | INFO     | __main__                       |   Train mean: 74.58 | std: 10.68
+2026-06-21 13:46:02 | INFO     | __main__                       | Step 2 — ADF stationarity test
+2026-06-21 13:46:02 | INFO     | __main__                       |   ADF statistic : -13.6053
+2026-06-21 13:46:02 | INFO     | __main__                       |   p-value       : 0.0000
+2026-06-21 13:46:02 | INFO     | __main__                       |   Stationary    : True (threshold p < 0.05)
+2026-06-21 13:46:02 | INFO     | __main__                       | Step 3 — SARIMA order selection
+2026-06-21 13:46:02 | INFO     | __main__                       |   Order    (p,d,q)     = (1, 0, 1)
+2026-06-21 13:46:02 | INFO     | __main__                       |   Seasonal (P,D,Q,m)  = (1, 1, 0, 24)
+2026-06-21 13:46:02 | INFO     | __main__                       |   Rationale:
+2026-06-21 13:46:02 | INFO     | __main__                       |     p=1: one AR lag captures short-term autocorrelation
+2026-06-21 13:46:02 | INFO     | __main__                       |     d=0: series stationary after seasonal differencing
+2026-06-21 13:46:02 | INFO     | __main__                       |     q=1: one MA term for residual smoothing
+2026-06-21 13:46:02 | INFO     | __main__                       |     P=1: seasonal AR term (weekly pattern)
+2026-06-21 13:46:02 | INFO     | __main__                       |     D=1: seasonal differencing removes weekly trend
+2026-06-21 13:46:02 | INFO     | __main__                       |     Q=0: seasonal MA not needed given P=1 fits well
+2026-06-21 13:46:02 | INFO     | __main__                       |     m=24: 24-hour seasonality (daily cycle)
+2026-06-21 13:46:02 | INFO     | __main__                       | Step 4 — Fitting SARIMA(1, 0, 1) × (1, 1, 0, 24)
+2026-06-21 13:46:03 | INFO     | __main__                       |   AIC: 13318.27 | BIC: 13339.98 | Log-likelihood: -6655.14
+2026-06-21 13:46:03 | INFO     | __main__                       | Step 5 — Residual diagnostics (Ljung-Box test)
+2026-06-21 13:46:03 | INFO     | __main__                       |   Ljung-Box p-values (lags 10, 20): [0.0, 0.0]
+2026-06-21 13:46:03 | INFO     | __main__                       |   Residuals are white noise: False
+2026-06-21 13:46:03 | WARNING  | __main__                       |   Residuals show autocorrelation — model may underfit
+2026-06-21 13:46:03 | INFO     | __main__                       | Step 6 — 1-hour-ahead forecast evaluation
+2026-06-21 13:46:03 | INFO     | __main__                       |   MAE  : 8.5610  (avg error in score points)
+2026-06-21 13:46:03 | INFO     | __main__                       |   RMSE : 11.4112
+2026-06-21 13:46:03 | INFO     | __main__                       |   MAPE : 12.37%
+2026-06-21 13:46:03 | INFO     | __main__                       |   Breach precision: 0.0000
+2026-06-21 13:46:03 | INFO     | __main__                       |   Breach recall   : 0.0000
+2026-06-21 13:46:03 | INFO     | __main__                       |   Breach F1       : 0.0000
+2026-06-21 13:46:03 | INFO     | __main__                       |   Business read: catching 0% of Wi-Fi degradations
+2026-06-21 13:46:03 | INFO     | __main__                       | Step 8 — Saving model artifacts
+2026-06-21 13:46:04 | INFO     | __main__                       |   Saved: p2_sarima_model.pkl
+2026-06-21 13:46:04 | INFO     | __main__                       |   Saved: p2_baseline_stats.joblib
+2026-06-21 13:46:04 | INFO     | __main__                       |   Saved: p2_forecast_sample.parquet
+2026-06-21 13:46:04 | INFO     | __main__                       |   Saved: p2_metrics.json
+2026-06-21 13:46:04 | INFO     | __main__                       | ============================================================
+2026-06-21 13:46:04 | INFO     | __main__                       | P2 training complete — MAE: 8.5610
+2026-06-21 13:46:04 | INFO     | __main__                       | ============================================================

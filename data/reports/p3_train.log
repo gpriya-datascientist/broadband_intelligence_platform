@@ -1,0 +1,133 @@
+2026-06-20 23:04:55 | INFO     | __main__                       | ============================================================
+2026-06-20 23:04:55 | INFO     | __main__                       | P3 â€” Churn Prediction MLP Training
+2026-06-20 23:04:55 | INFO     | __main__                       | ============================================================
+2026-06-20 23:04:55 | INFO     | __main__                       | Step 1 â€” Loading processed P3 train/val/test data
+2026-06-20 23:04:55 | INFO     | __main__                       |   Train: 340 | Val: 60 | Test: 100
+2026-06-20 23:04:55 | INFO     | __main__                       |   Features used: 12 (dropped: ['anomaly_severity_score'])
+2026-06-20 23:04:55 | INFO     | __main__                       |   Train churn rate: 25.9% | Val: 26.7% | Test: 26.0%
+2026-06-20 23:04:55 | INFO     | __main__                       | Step 2 â€” Multicollinearity handling
+2026-06-20 23:04:55 | INFO     | __main__                       |   Finding: anomaly_severity_score and anomaly_count_30d have r=1.000
+2026-06-20 23:04:55 | INFO     | __main__                       |   Decision: drop anomaly_severity_score
+2026-06-20 23:04:55 | INFO     | __main__                       |   Rationale: both encode the same information (severity is normalised count)
+2026-06-20 23:04:55 | INFO     | __main__                       |              keeping the raw count is more interpretable for SHAP output
+2026-06-20 23:04:55 | INFO     | __main__                       |              and avoids feeding redundant signal to the DNN optimizer
+2026-06-20 23:04:55 | INFO     | __main__                       | Step 3 â€” Building MLP Neural Network
+2026-06-20 23:04:55 | INFO     | __main__                       |   Architecture: Input â†’ 128 â†’ 64 â†’ 32 â†’ Sigmoid
+2026-06-20 23:04:55 | INFO     | __main__                       |   Solver: Adam | LR: 0.001 | Max epochs: 100 | Patience: 15
+2026-06-20 23:04:55 | INFO     | __main__                       | Step 4 â€” Training MLP Neural Network
+2026-06-20 23:04:55 | INFO     | __main__                       |   Class weights: {0: 1.0, 1: 2.8636}
+2026-06-20 23:04:55 | INFO     | __main__                       |   Strategy: sample_weight at fit() (equivalent to class_weight in Keras)
+2026-06-20 23:04:55 | INFO     | __main__                       |   Trained for 46 epochs | best val score: 0.7565
+2026-06-20 23:04:55 | INFO     | __main__                       | Step 5 â€” Learning curve analysis
+2026-06-20 23:04:55 | INFO     | __main__                       |   Epochs: 46 | Final loss: 0.0209 | Best val score: 0.7565
+2026-06-20 23:04:55 | INFO     | __main__                       | Step 6 â€” Threshold tuning (max F1 on churn class)
+2026-06-20 23:04:55 | INFO     | __main__                       |   Optimal threshold: 0.0876 (default would be 0.50)
+2026-06-20 23:04:55 | INFO     | __main__                       |   At this threshold: precision=0.5000 recall=0.8125 F1=0.6190
+2026-06-20 23:04:55 | INFO     | __main__                       |   Business rationale: lower threshold increases recall (catch more churners)
+2026-06-20 23:04:55 | INFO     | __main__                       | Step 7 â€” Final evaluation on held-out test set
+2026-06-20 23:04:55 | INFO     | __main__                       |   ROC-AUC    : 0.8498  (overall discriminative power)
+2026-06-20 23:04:55 | INFO     | __main__                       |   Avg Prec   : 0.6031  (area under PR curve)
+2026-06-20 23:04:55 | INFO     | __main__                       |   Precision  : 0.5366  (of flagged churners, how many leave)
+2026-06-20 23:04:55 | INFO     | __main__                       |   Recall     : 0.8462  (of actual churners, how many we flag)
+2026-06-20 23:04:55 | INFO     | __main__                       |   F1         : 0.6567
+2026-06-20 23:04:55 | INFO     | __main__                       |   Confusion matrix:  TN=55 FP=19 | FN=4 TP=22
+2026-06-20 23:04:55 | INFO     | __main__                       |   Business read: we catch 85% of churners, 54% of alerts are correct
+2026-06-20 23:04:55 | INFO     | __main__                       | Step 8 â€” SHAP explainability
+2026-06-20 23:05:07 | INFO     | __main__                       |   Top SHAP features (global mean |SHAP|):
+2026-06-20 23:05:07 | INFO     | __main__                       |     contract_type                            0.2121
+2026-06-20 23:05:07 | INFO     | __main__                       |     tenure_months                            0.1246
+2026-06-20 23:05:07 | INFO     | __main__                       |     internet_service_type                    0.0467
+2026-06-20 23:05:07 | INFO     | __main__                       |     paperless_billing_flag                   0.0460
+2026-06-20 23:05:07 | INFO     | __main__                       |     monthly_charges                          0.0452
+2026-06-20 23:05:07 | INFO     | __main__                       |     days_since_last_anomaly                  0.0350
+2026-06-20 23:05:07 | INFO     | __main__                       | Step 9 â€” Saving all artifacts
+2026-06-20 23:05:07 | INFO     | __main__                       |   Saved: p3_dnn_model.keras
+2026-06-20 23:05:07 | INFO     | __main__                       |   Saved: p3_predictions.parquet
+2026-06-20 23:05:07 | INFO     | __main__                       |   Saved: p3_shap_values.parquet
+2026-06-20 23:05:07 | INFO     | __main__                       |   Saved: p3_training_history.parquet
+2026-06-20 23:05:07 | INFO     | __main__                       |   Saved: p3_metrics.json
+2026-06-20 23:05:07 | INFO     | __main__                       | ============================================================
+2026-06-20 23:05:07 | INFO     | __main__                       | P3 training complete â€” ROC-AUC: 0.8498
+2026-06-20 23:05:07 | INFO     | __main__                       | ============================================================
+2026-06-21 13:16:19 | INFO     | __main__                       | ============================================================
+2026-06-21 13:16:19 | INFO     | __main__                       | P3 — Churn Prediction MLP Training
+2026-06-21 13:16:19 | INFO     | __main__                       | ============================================================
+2026-06-21 13:16:19 | INFO     | __main__                       | Step 1 — Loading processed P3 train/val/test data
+2026-06-21 13:16:19 | INFO     | __main__                       |   Train: 340 | Val: 60 | Test: 100
+2026-06-21 13:16:19 | INFO     | __main__                       |   Features used: 12 (dropped: ['anomaly_severity_score'])
+2026-06-21 13:16:19 | INFO     | __main__                       |   Train churn rate: 25.9% | Val: 26.7% | Test: 26.0%
+2026-06-21 13:16:19 | INFO     | __main__                       | Step 2 — Multicollinearity handling
+2026-06-21 13:16:19 | INFO     | __main__                       |   Finding: anomaly_severity_score and anomaly_count_30d have r=1.000
+2026-06-21 13:16:19 | INFO     | __main__                       |   Decision: drop anomaly_severity_score
+2026-06-21 13:16:19 | INFO     | __main__                       |   Rationale: both encode the same information (severity is normalised count)
+2026-06-21 13:16:19 | INFO     | __main__                       |              keeping the raw count is more interpretable for SHAP output
+2026-06-21 13:16:19 | INFO     | __main__                       |              and avoids feeding redundant signal to the DNN optimizer
+2026-06-21 13:16:19 | INFO     | __main__                       | Step 3 — Building MLP Neural Network
+2026-06-21 13:16:19 | INFO     | __main__                       |   Solver: Adam | LR: 0.001 | Max epochs: 100 | Patience: 15
+2026-06-21 13:16:19 | INFO     | __main__                       | Step 4 — Training MLP Neural Network
+2026-06-21 13:16:19 | INFO     | __main__                       |   Class weights: {0: 1.0, 1: 2.8636}
+2026-06-21 13:16:19 | INFO     | __main__                       |   Strategy: sample_weight at fit() (equivalent to class_weight in Keras)
+2026-06-21 13:46:37 | INFO     | __main__                       | ============================================================
+2026-06-21 13:46:37 | INFO     | __main__                       | P3 — Churn Prediction MLP Training
+2026-06-21 13:46:37 | INFO     | __main__                       | ============================================================
+2026-06-21 13:46:37 | INFO     | __main__                       | Step 1 — Loading processed P3 train/val/test data
+2026-06-21 13:46:37 | INFO     | __main__                       |   Train: 340 | Val: 60 | Test: 100
+2026-06-21 13:46:37 | INFO     | __main__                       |   Features used: 12 (dropped: ['anomaly_severity_score'])
+2026-06-21 13:46:37 | INFO     | __main__                       |   Train churn rate: 25.9% | Val: 26.7% | Test: 26.0%
+2026-06-21 13:46:37 | INFO     | __main__                       | Step 2 — Multicollinearity handling
+2026-06-21 13:46:37 | INFO     | __main__                       |   Finding: anomaly_severity_score and anomaly_count_30d have r=1.000
+2026-06-21 13:46:37 | INFO     | __main__                       |   Decision: drop anomaly_severity_score
+2026-06-21 13:46:37 | INFO     | __main__                       |   Rationale: both encode the same information (severity is normalised count)
+2026-06-21 13:46:37 | INFO     | __main__                       |              keeping the raw count is more interpretable for SHAP output
+2026-06-21 13:46:37 | INFO     | __main__                       |              and avoids feeding redundant signal to the DNN optimizer
+2026-06-21 13:46:37 | INFO     | __main__                       | Step 3 — Building MLP Neural Network
+2026-06-21 13:46:37 | INFO     | __main__                       |   Solver: Adam | LR: 0.001 | Max epochs: 100 | Patience: 15
+2026-06-21 13:46:37 | INFO     | __main__                       | Step 4 — Training MLP Neural Network
+2026-06-21 13:46:37 | INFO     | __main__                       |   Class weights: {0: 1.0, 1: 2.8636}
+2026-06-21 13:46:37 | INFO     | __main__                       |   Strategy: sample_weight at fit() (equivalent to class_weight in Keras)
+2026-06-21 13:50:09 | INFO     | __main__                       | ============================================================
+2026-06-21 13:50:09 | INFO     | __main__                       | P3 — Churn Prediction MLP Training
+2026-06-21 13:50:09 | INFO     | __main__                       | ============================================================
+2026-06-21 13:50:09 | INFO     | __main__                       | Step 1 — Loading processed P3 train/val/test data
+2026-06-21 13:50:09 | INFO     | __main__                       |   Train: 340 | Val: 60 | Test: 100
+2026-06-21 13:50:09 | INFO     | __main__                       |   Features used: 12 (dropped: ['anomaly_severity_score'])
+2026-06-21 13:50:09 | INFO     | __main__                       |   Train churn: 25.9% | Val: 26.7% | Test: 26.0%
+2026-06-21 13:50:09 | INFO     | __main__                       | Step 2 — Multicollinearity handling
+2026-06-21 13:50:09 | INFO     | __main__                       |   Finding: anomaly_severity_score and anomaly_count_30d have r=1.000
+2026-06-21 13:50:09 | INFO     | __main__                       |   Decision: drop anomaly_severity_score
+2026-06-21 13:50:09 | INFO     | __main__                       |   Rationale: both encode same info; raw count is more interpretable for SHAP
+2026-06-21 13:50:09 | INFO     | __main__                       | Step 3 — Building MLP Neural Network
+2026-06-21 13:50:09 | INFO     | __main__                       |   Architecture: Input(12) -> 128 -> 64 -> 32 -> Sigmoid
+2026-06-21 13:50:09 | INFO     | __main__                       | Step 4 — Training MLP Neural Network
+2026-06-21 13:50:09 | INFO     | __main__                       |   Class weights: {0: 1.0, 1: 2.8636}
+2026-06-21 13:50:09 | INFO     | __main__                       |   Strategy: minority class oversampling (weight ratio = 2.86)
+2026-06-21 13:50:09 | INFO     | __main__                       |   Augmented train size: 516 rows (340 original + 176 minority copies)
+2026-06-21 13:50:10 | INFO     | __main__                       |   Trained 32 epochs | best val score: 0.9487
+2026-06-21 13:50:10 | INFO     | __main__                       | Step 5 — Learning curve analysis
+2026-06-21 13:50:10 | INFO     | __main__                       |   Epochs: 32 | Final loss: 0.0132 | Best val score: 0.9487
+2026-06-21 13:50:10 | INFO     | __main__                       | Step 6 — Threshold tuning (max F1 on churn class)
+2026-06-21 13:50:10 | INFO     | __main__                       |   Optimal threshold: 0.1530 (default would be 0.50)
+2026-06-21 13:50:10 | INFO     | __main__                       |   At this threshold: precision=0.5455 recall=0.7500 F1=0.6316
+2026-06-21 13:50:10 | INFO     | __main__                       | Step 7 — Final evaluation on held-out test set
+2026-06-21 13:50:10 | INFO     | __main__                       |   ROC-AUC    : 0.7739
+2026-06-21 13:50:10 | INFO     | __main__                       |   Avg Prec   : 0.4759
+2026-06-21 13:50:10 | INFO     | __main__                       |   Precision  : 0.4516
+2026-06-21 13:50:10 | INFO     | __main__                       |   Recall     : 0.5385
+2026-06-21 13:50:10 | INFO     | __main__                       |   F1         : 0.4912
+2026-06-21 13:50:10 | INFO     | __main__                       |   Confusion  : TN=57 FP=17 | FN=12 TP=14
+2026-06-21 13:50:10 | INFO     | __main__                       | Step 8 — SHAP explainability
+2026-06-21 13:50:19 | INFO     | __main__                       |   Top SHAP features:
+2026-06-21 13:50:19 | INFO     | __main__                       |     contract_type                            0.1591
+2026-06-21 13:50:19 | INFO     | __main__                       |     tenure_months                            0.1162
+2026-06-21 13:50:19 | INFO     | __main__                       |     days_since_last_anomaly                  0.0529
+2026-06-21 13:50:19 | INFO     | __main__                       |     charge_per_tenure_ratio                  0.0478
+2026-06-21 13:50:19 | INFO     | __main__                       |     tech_support_flag                        0.0454
+2026-06-21 13:50:19 | INFO     | __main__                       | Step 9 — Saving all artifacts
+2026-06-21 13:50:19 | INFO     | __main__                       |   Saved: p3_dnn_model.joblib
+2026-06-21 13:50:19 | INFO     | __main__                       |   Saved: p3_predictions.parquet
+2026-06-21 13:50:19 | INFO     | __main__                       |   Saved: p3_shap_values.parquet
+2026-06-21 13:50:19 | INFO     | __main__                       |   Saved: p3_training_history.parquet
+2026-06-21 13:50:19 | INFO     | __main__                       |   Saved: p3_metrics.json
+2026-06-21 13:50:19 | INFO     | __main__                       | ============================================================
+2026-06-21 13:50:19 | INFO     | __main__                       | P3 training complete — ROC-AUC: 0.7739
+2026-06-21 13:50:19 | INFO     | __main__                       | ============================================================

@@ -1,0 +1,43 @@
+{
+  "model": "IF + LOF Ensemble",
+  "threshold": 0.27885,
+  "if_weight": 0.6,
+  "lof_weight": 0.4,
+  "contamination": 0.12,
+  "if_n_estimators": 200,
+  "lof_n_neighbors": 20,
+  "features": [
+    "ds_power_level_dbmv",
+    "us_power_level_dbmv",
+    "ds_snr_db",
+    "us_mer_db",
+    "ds_channel_utilization_pct",
+    "us_channel_utilization_pct",
+    "ds_power_rolling_std_1h",
+    "snr_drop_rate_per_hour",
+    "us_ds_power_delta",
+    "channel_util_peak_hour_flag"
+  ],
+  "metrics": {
+    "roc_auc": 0.7648,
+    "precision": 0.3791,
+    "recall": 0.5457,
+    "f1": 0.4474,
+    "tn": 32640,
+    "fp": 6924,
+    "fn": 3519,
+    "tp": 4227
+  },
+  "feature_importance": {
+    "ds_channel_utilization_pct": 0.065519,
+    "ds_snr_db": 0.045659,
+    "ds_power_level_dbmv": 0.021426,
+    "snr_drop_rate_per_hour": 0.017101,
+    "us_ds_power_delta": 0.015117,
+    "us_power_level_dbmv": 0.007858,
+    "channel_util_peak_hour_flag": 0.00314,
+    "us_channel_utilization_pct": 0.002785,
+    "us_mer_db": 0.000428,
+    "ds_power_rolling_std_1h": -0.001123
+  }
+}

@@ -1,0 +1,18 @@
+node_modules/
+__pycache__/
+*.pyc
+.env
+frontend/node_modules/
+data/raw/
+__pycache__/
+*.pyc
+*.pkl
+*.joblib
+data/raw/
+data/processed/
+data/models/p2_sarima_model.pkl
+data/models/p1_isolation_forest.joblib data/models/p1_lof.joblib data/models/p1_scaler.joblib data/models/p2_baseline_stats.joblib data/models/p3_dnn_model.joblib
+frontend/node_modules/
+node_modules/
+.env
+.idea/

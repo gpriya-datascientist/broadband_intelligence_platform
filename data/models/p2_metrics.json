@@ -1,0 +1,48 @@
+{
+  "stationarity_test": {
+    "adf_statistic": -13.6053,
+    "p_value": 0.0,
+    "is_stationary": "True",
+    "interpretation": "stationary"
+  },
+  "sarima_fit": {
+    "order": [
+      1,
+      0,
+      1
+    ],
+    "seasonal_order": [
+      1,
+      1,
+      0,
+      24
+    ],
+    "aic": 13318.27,
+    "bic": 13339.98,
+    "llf": -6655.14,
+    "n_train": 1728
+  },
+  "residual_diagnostics": {
+    "ljung_box_pvalues": [
+      0.0,
+      0.0
+    ],
+    "white_noise": false,
+    "residual_mean": 1.0269,
+    "residual_std": 14.2405
+  },
+  "forecast_metrics": {
+    "mae": 8.561,
+    "rmse": 11.4112,
+    "mape": 12.3674,
+    "n_test": 432
+  },
+  "breach_detection": {
+    "sigma_threshold": 3.0,
+    "breach_precision": 0.0,
+    "breach_recall": 0.0,
+    "breach_f1": 0.0,
+    "n_true_breaches": 15,
+    "n_predicted": 0
+  }
+}

@@ -1,0 +1,151 @@
+2026-06-20 22:44:23 | INFO     | __main__                       | ============================================================
+2026-06-20 22:44:23 | INFO     | __main__                       | P3 â€” Data Preparation & Cleaning Pipeline
+2026-06-20 22:44:23 | INFO     | __main__                       | ============================================================
+2026-06-20 22:44:23 | INFO     | __main__                       | Step 1 â€” Loading raw churn customer data
+2026-06-20 22:44:23 | INFO     | __main__                       |   Loaded 500 customers | 15 features | churn rate: 26.0%
+2026-06-20 22:44:23 | INFO     | __main__                       | Step 2 â€” Schema validation
+2026-06-20 22:44:23 | INFO     | __main__                       |   Schema corrections: 0
+2026-06-20 22:44:23 | INFO     | __main__                       | Step 3 â€” Business rule validation
+2026-06-20 22:44:23 | INFO     | __main__                       |   Rows removed by business rules: 0 | Remaining: 500
+2026-06-20 22:44:23 | INFO     | __main__                       | Step 4 â€” Missing value audit and imputation
+2026-06-20 22:44:23 | INFO     | __main__                       |   No missing values detected
+2026-06-20 22:44:23 | INFO     | __main__                       | Step 5 â€” Duplicate detection
+2026-06-20 22:44:23 | INFO     | __main__                       |   Exact: 0 | customer_id: 0 | Remaining: 500
+2026-06-20 22:44:23 | INFO     | __main__                       | Step 6 â€” Class imbalance analysis
+2026-06-20 22:44:23 | INFO     | __main__                       |   Class 0 (Stay)  : 370 (74.0%)
+2026-06-20 22:44:23 | INFO     | __main__                       |   Class 1 (Churn) : 130 (26.0%)
+2026-06-20 22:44:23 | INFO     | __main__                       |   Imbalance ratio : 2.85:1
+2026-06-20 22:44:23 | INFO     | __main__                       |   Class weights   : {0: 1.0, 1: 2.8462}
+2026-06-20 22:44:23 | INFO     | __main__                       |   Strategy: class-weighted loss (not SMOTE) â€” avoids small-dataset overfitting
+2026-06-20 22:44:23 | INFO     | __main__                       | Step 7 â€” Categorical label encoding
+2026-06-20 22:44:23 | INFO     | __main__                       |   contract_type â†’ {'Month-to-month': 0, 'One year': 1, 'Two year': 2}
+2026-06-20 22:44:23 | INFO     | __main__                       |   payment_method â†’ {'Bank transfer': 0, 'Credit card': 1, 'Electronic check': 2, 'Mailed check': 3}
+2026-06-20 22:44:23 | INFO     | __main__                       |   internet_service_type â†’ {'DSL': 0, 'Fiber optic': 1, 'No': 2}
+2026-06-20 22:44:23 | INFO     | __main__                       | Step 9 â€” Feature correlation analysis
+2026-06-20 22:44:23 | INFO     | __main__                       |   Feature correlations with churn target:
+2026-06-20 22:44:23 | INFO     | __main__                       |     contract_type                            r = -0.424
+2026-06-20 22:44:23 | INFO     | __main__                       |     charge_per_tenure_ratio                  r = +0.271
+2026-06-20 22:44:23 | INFO     | __main__                       |     tenure_months                            r = -0.226
+2026-06-20 22:44:23 | INFO     | __main__                       |     monthly_charges                          r = +0.147
+2026-06-20 22:44:23 | INFO     | __main__                       |     anomaly_severity_score                   r = +0.081
+2026-06-20 22:44:23 | INFO     | __main__                       |     anomaly_count_30d                        r = +0.081
+2026-06-20 22:44:23 | INFO     | __main__                       |     tech_support_flag                        r = -0.061
+2026-06-20 22:44:23 | INFO     | __main__                       |     paperless_billing_flag                   r = -0.053
+2026-06-20 22:44:23 | INFO     | __main__                       |     days_since_last_anomaly                  r = -0.051
+2026-06-20 22:44:23 | INFO     | __main__                       |     payment_method                           r = -0.046
+2026-06-20 22:44:23 | INFO     | __main__                       |     wifi_breach_count_30d                    r = +0.036
+2026-06-20 22:44:23 | INFO     | __main__                       |     internet_service_type                    r = -0.016
+2026-06-20 22:44:23 | INFO     | __main__                       |     service_call_frequency_30d               r = +0.002
+2026-06-20 22:44:23 | WARNING  | __main__                       |   High inter-feature correlations (|r| > 0.85):
+2026-06-20 22:44:23 | WARNING  | __main__                       |     anomaly_severity_score â†” anomaly_count_30d : r=1.000
+2026-06-20 22:44:23 | INFO     | __main__                       | Step 10 â€” Stratified train/val/test split
+2026-06-20 22:44:23 | INFO     | __main__                       |   Train: 340 rows | churn: 25.9%
+2026-06-20 22:44:23 | INFO     | __main__                       |   Val  : 60 rows | churn: 26.7%
+2026-06-20 22:44:23 | INFO     | __main__                       |   Test : 100 rows | churn: 26.0%
+2026-06-20 22:44:23 | INFO     | __main__                       | Step 8 â€” Feature scaling (StandardScaler fit on train only)
+2026-06-20 22:44:23 | INFO     | __main__                       |   Scaled 13 features | fit on 340 training rows
+2026-06-20 22:44:23 | INFO     | __main__                       | Step 11 â€” Saving processed data and artifacts
+2026-06-20 22:44:23 | INFO     | __main__                       |   Saved train/val/test parquets
+2026-06-20 22:44:23 | INFO     | __main__                       |   Saved scaler and encoders
+2026-06-20 22:44:23 | INFO     | __main__                       |   Saved: data/reports/p3_cleaning_report.json
+2026-06-20 22:44:23 | INFO     | __main__                       | ============================================================
+2026-06-20 22:44:23 | INFO     | __main__                       | P3 preparation complete
+2026-06-20 22:44:23 | INFO     | __main__                       | ============================================================
+2026-06-21 13:10:15 | INFO     | __main__                       | ============================================================
+2026-06-21 13:10:15 | INFO     | __main__                       | P3 — Data Preparation & Cleaning Pipeline
+2026-06-21 13:10:15 | INFO     | __main__                       | ============================================================
+2026-06-21 13:10:15 | INFO     | __main__                       | Step 1 — Loading raw churn customer data
+2026-06-21 13:10:15 | INFO     | __main__                       |   Loaded 500 customers | 15 features | churn rate: 26.0%
+2026-06-21 13:10:15 | INFO     | __main__                       | Step 2 — Schema validation
+2026-06-21 13:10:15 | INFO     | __main__                       |   Schema corrections: 0
+2026-06-21 13:10:15 | INFO     | __main__                       | Step 3 — Business rule validation
+2026-06-21 13:10:15 | INFO     | __main__                       |   Rows removed by business rules: 0 | Remaining: 500
+2026-06-21 13:10:15 | INFO     | __main__                       | Step 4 — Missing value audit and imputation
+2026-06-21 13:10:15 | INFO     | __main__                       |   No missing values detected
+2026-06-21 13:10:15 | INFO     | __main__                       | Step 5 — Duplicate detection
+2026-06-21 13:10:15 | INFO     | __main__                       |   Exact: 0 | customer_id: 0 | Remaining: 500
+2026-06-21 13:10:15 | INFO     | __main__                       | Step 6 — Class imbalance analysis
+2026-06-21 13:10:15 | INFO     | __main__                       |   Class 0 (Stay)  : 370 (74.0%)
+2026-06-21 13:10:15 | INFO     | __main__                       |   Class 1 (Churn) : 130 (26.0%)
+2026-06-21 13:10:15 | INFO     | __main__                       |   Imbalance ratio : 2.85:1
+2026-06-21 13:10:15 | INFO     | __main__                       |   Class weights   : {0: 1.0, 1: 2.8462}
+2026-06-21 13:10:15 | INFO     | __main__                       |   Strategy: class-weighted loss (not SMOTE) — avoids small-dataset overfitting
+2026-06-21 13:10:15 | INFO     | __main__                       | Step 7 — Categorical label encoding
+2026-06-21 13:10:15 | INFO     | __main__                       | Step 9 — Feature correlation analysis
+2026-06-21 13:10:15 | INFO     | __main__                       |   Feature correlations with churn target:
+2026-06-21 13:10:15 | INFO     | __main__                       |     contract_type                            r = -0.424
+2026-06-21 13:10:15 | INFO     | __main__                       |     charge_per_tenure_ratio                  r = +0.271
+2026-06-21 13:10:15 | INFO     | __main__                       |     tenure_months                            r = -0.226
+2026-06-21 13:10:15 | INFO     | __main__                       |     monthly_charges                          r = +0.147
+2026-06-21 13:10:15 | INFO     | __main__                       |     anomaly_severity_score                   r = +0.081
+2026-06-21 13:10:15 | INFO     | __main__                       |     anomaly_count_30d                        r = +0.081
+2026-06-21 13:10:15 | INFO     | __main__                       |     tech_support_flag                        r = -0.061
+2026-06-21 13:10:15 | INFO     | __main__                       |     paperless_billing_flag                   r = -0.053
+2026-06-21 13:10:15 | INFO     | __main__                       |     days_since_last_anomaly                  r = -0.051
+2026-06-21 13:10:15 | INFO     | __main__                       |     payment_method                           r = -0.046
+2026-06-21 13:10:15 | INFO     | __main__                       |     wifi_breach_count_30d                    r = +0.036
+2026-06-21 13:10:15 | INFO     | __main__                       |     internet_service_type                    r = -0.016
+2026-06-21 13:10:15 | INFO     | __main__                       |     service_call_frequency_30d               r = +0.002
+2026-06-21 13:10:15 | WARNING  | __main__                       |   High inter-feature correlations (|r| > 0.85):
+2026-06-21 13:10:15 | INFO     | __main__                       | Step 10 — Stratified train/val/test split
+2026-06-21 13:10:15 | INFO     | __main__                       |   Train: 340 rows | churn: 25.9%
+2026-06-21 13:10:15 | INFO     | __main__                       |   Val  : 60 rows | churn: 26.7%
+2026-06-21 13:10:15 | INFO     | __main__                       |   Test : 100 rows | churn: 26.0%
+2026-06-21 13:10:15 | INFO     | __main__                       | Step 8 — Feature scaling (StandardScaler fit on train only)
+2026-06-21 13:10:15 | INFO     | __main__                       |   Scaled 13 features | fit on 340 training rows
+2026-06-21 13:10:15 | INFO     | __main__                       | Step 11 — Saving processed data and artifacts
+2026-06-21 13:10:15 | INFO     | __main__                       |   Saved train/val/test parquets
+2026-06-21 13:10:15 | INFO     | __main__                       |   Saved scaler and encoders
+2026-06-21 13:10:15 | INFO     | __main__                       |   Saved: data/reports/p3_cleaning_report.json
+2026-06-21 13:10:15 | INFO     | __main__                       | ============================================================
+2026-06-21 13:10:15 | INFO     | __main__                       | P3 preparation complete
+2026-06-21 13:10:15 | INFO     | __main__                       | ============================================================
+2026-06-21 13:46:30 | INFO     | __main__                       | ============================================================
+2026-06-21 13:46:30 | INFO     | __main__                       | P3 — Data Preparation & Cleaning Pipeline
+2026-06-21 13:46:30 | INFO     | __main__                       | ============================================================
+2026-06-21 13:46:30 | INFO     | __main__                       | Step 1 — Loading raw churn customer data
+2026-06-21 13:46:30 | INFO     | __main__                       |   Loaded 500 customers | 15 features | churn rate: 26.0%
+2026-06-21 13:46:30 | INFO     | __main__                       | Step 2 — Schema validation
+2026-06-21 13:46:30 | INFO     | __main__                       |   Schema corrections: 0
+2026-06-21 13:46:30 | INFO     | __main__                       | Step 3 — Business rule validation
+2026-06-21 13:46:30 | INFO     | __main__                       |   Rows removed by business rules: 0 | Remaining: 500
+2026-06-21 13:46:30 | INFO     | __main__                       | Step 4 — Missing value audit and imputation
+2026-06-21 13:46:30 | INFO     | __main__                       |   No missing values detected
+2026-06-21 13:46:30 | INFO     | __main__                       | Step 5 — Duplicate detection
+2026-06-21 13:46:30 | INFO     | __main__                       |   Exact: 0 | customer_id: 0 | Remaining: 500
+2026-06-21 13:46:30 | INFO     | __main__                       | Step 6 — Class imbalance analysis
+2026-06-21 13:46:30 | INFO     | __main__                       |   Class 0 (Stay)  : 370 (74.0%)
+2026-06-21 13:46:30 | INFO     | __main__                       |   Class 1 (Churn) : 130 (26.0%)
+2026-06-21 13:46:30 | INFO     | __main__                       |   Imbalance ratio : 2.85:1
+2026-06-21 13:46:30 | INFO     | __main__                       |   Class weights   : {0: 1.0, 1: 2.8462}
+2026-06-21 13:46:30 | INFO     | __main__                       |   Strategy: class-weighted loss (not SMOTE) — avoids small-dataset overfitting
+2026-06-21 13:46:30 | INFO     | __main__                       | Step 7 — Categorical label encoding
+2026-06-21 13:46:30 | INFO     | __main__                       | Step 9 — Feature correlation analysis
+2026-06-21 13:46:30 | INFO     | __main__                       |   Feature correlations with churn target:
+2026-06-21 13:46:30 | INFO     | __main__                       |     contract_type                            r = -0.407
+2026-06-21 13:46:30 | INFO     | __main__                       |     charge_per_tenure_ratio                  r = +0.267
+2026-06-21 13:46:30 | INFO     | __main__                       |     tenure_months                            r = -0.228
+2026-06-21 13:46:30 | INFO     | __main__                       |     monthly_charges                          r = +0.167
+2026-06-21 13:46:30 | INFO     | __main__                       |     tech_support_flag                        r = -0.089
+2026-06-21 13:46:30 | INFO     | __main__                       |     days_since_last_anomaly                  r = -0.044
+2026-06-21 13:46:30 | INFO     | __main__                       |     paperless_billing_flag                   r = -0.044
+2026-06-21 13:46:30 | INFO     | __main__                       |     internet_service_type                    r = -0.042
+2026-06-21 13:46:30 | INFO     | __main__                       |     anomaly_count_30d                        r = +0.039
+2026-06-21 13:46:30 | INFO     | __main__                       |     payment_method                           r = -0.034
+2026-06-21 13:46:30 | INFO     | __main__                       |     anomaly_severity_score                   r = +0.027
+2026-06-21 13:46:30 | INFO     | __main__                       |     wifi_breach_count_30d                    r = +0.018
+2026-06-21 13:46:30 | INFO     | __main__                       |     service_call_frequency_30d               r = +0.013
+2026-06-21 13:46:30 | INFO     | __main__                       |   No high inter-feature correlations detected (threshold: 0.85)
+2026-06-21 13:46:30 | INFO     | __main__                       | Step 10 — Stratified train/val/test split
+2026-06-21 13:46:30 | INFO     | __main__                       |   Train: 340 rows | churn: 25.9%
+2026-06-21 13:46:30 | INFO     | __main__                       |   Val  : 60 rows | churn: 26.7%
+2026-06-21 13:46:30 | INFO     | __main__                       |   Test : 100 rows | churn: 26.0%
+2026-06-21 13:46:30 | INFO     | __main__                       | Step 8 — Feature scaling (StandardScaler fit on train only)
+2026-06-21 13:46:30 | INFO     | __main__                       |   Scaled 13 features | fit on 340 training rows
+2026-06-21 13:46:30 | INFO     | __main__                       | Step 11 — Saving processed data and artifacts
+2026-06-21 13:46:30 | INFO     | __main__                       |   Saved train/val/test parquets
+2026-06-21 13:46:30 | INFO     | __main__                       |   Saved scaler and encoders
+2026-06-21 13:46:30 | INFO     | __main__                       |   Saved: data/reports/p3_cleaning_report.json
+2026-06-21 13:46:30 | INFO     | __main__                       | ============================================================
+2026-06-21 13:46:30 | INFO     | __main__                       | P3 preparation complete
+2026-06-21 13:46:30 | INFO     | __main__                       | ============================================================

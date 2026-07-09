@@ -1,0 +1,81 @@
+{
+  "schema_issues": [],
+  "range_validation": {
+    "rssi_dbm": 2
+  },
+  "null_audit": {
+    "timestamp": 0,
+    "customer_id": 0,
+    "device_id": 0,
+    "device_type": 0,
+    "hour_of_day": 0,
+    "day_of_week": 0,
+    "wifi_experience_score": 0,
+    "rssi_dbm": 2,
+    "channel_interference_pct": 0,
+    "active_device_count": 0,
+    "experience_rolling_mean_7d": 0,
+    "experience_rolling_std_7d": 0,
+    "hfc_anomaly_flag": 0,
+    "forecast_breach_flag": 0
+  },
+  "nulls_after_imputation": 0,
+  "duplicates_removed": {
+    "exact_rows": 129600,
+    "device_timestamp_duplicates": 0,
+    "rows_after": 129600
+  },
+  "device_type_encoding": {
+    "mapping": {
+      "laptop": 0,
+      "iot": 1
+    },
+    "unmapped_rows": 0
+  },
+  "outlier_capping": {
+    "wifi_experience_score": {
+      "lower": 34.18,
+      "upper": 117.34,
+      "n_capped": 191
+    },
+    "rssi_dbm": {
+      "lower": -92.8,
+      "upper": -17.2,
+      "n_capped": 0
+    },
+    "channel_interference_pct": {
+      "lower": -8.8,
+      "upper": 38.8,
+      "n_capped": 0
+    },
+    "active_device_count": {
+      "lower": -3.0,
+      "upper": 11.0,
+      "n_capped": 34
+    }
+  },
+  "engineered_features": [
+    "experience_rolling_mean_7d",
+    "experience_rolling_std_7d",
+    "is_peak_hour",
+    "is_weekend",
+    "hour_sin",
+    "hour_cos",
+    "dow_sin",
+    "dow_cos",
+    "breach_lower_bound"
+  ],
+  "split": {
+    "split_timestamp": "2024-03-13 00:00:00",
+    "train_rows": 103680,
+    "test_rows": 25920,
+    "train_breach_rate": 0.0384,
+    "test_breach_rate": 0.0389,
+    "train_devices": 60,
+    "test_devices": 60
+  },
+  "output_files": {
+    "train": "C:\\Users\\gpngur01\\Downloads\\broadband_intelligence_platform\\broadband_intelligence\\data\\processed\\p2_train.parquet",
+    "test": "C:\\Users\\gpngur01\\Downloads\\broadband_intelligence_platform\\broadband_intelligence\\data\\processed\\p2_test.parquet"
+  }
+}

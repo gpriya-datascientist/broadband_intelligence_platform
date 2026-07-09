@@ -1,0 +1,82 @@
+{
+  "schema_issues": [],
+  "range_validation": {
+    "us_power_level_dbmv": 20,
+    "ds_snr_db": 125
+  },
+  "null_audit": {
+    "timestamp": 0,
+    "modem_id": 0,
+    "customer_id": 0,
+    "anomaly_flag": 0,
+    "ds_power_level_dbmv": 0,
+    "us_power_level_dbmv": 20,
+    "ds_snr_db": 125,
+    "us_mer_db": 0,
+    "ds_channel_utilization_pct": 0,
+    "us_channel_utilization_pct": 0,
+    "ds_power_rolling_std_1h": 0,
+    "snr_drop_rate_per_hour": 0,
+    "us_ds_power_delta": 0,
+    "channel_util_peak_hour_flag": 0
+  },
+  "nulls_after_imputation": 0,
+  "duplicates_removed": {
+    "exact_rows": 3505,
+    "modem_timestamp_duplicates": 0,
+    "rows_after": 236495
+  },
+  "outlier_capping": {
+    "ds_power_level_dbmv": {
+      "lower": -7.082,
+      "upper": 7.065,
+      "n_capped": 1
+    },
+    "us_power_level_dbmv": {
+      "lower": 28.535,
+      "upper": 47.463,
+      "n_capped": 1618
+    },
+    "ds_snr_db": {
+      "lower": 30.912,
+      "upper": 45.101,
+      "n_capped": 9736
+    },
+    "us_mer_db": {
+      "lower": 28.907,
+      "upper": 43.089,
+      "n_capped": 1
+    },
+    "ds_power_rolling_std_1h": {
+      "lower": -1.4537,
+      "upper": 4.1589,
+      "n_capped": 10
+    },
+    "snr_drop_rate_per_hour": {
+      "lower": -2.5387,
+      "upper": 2.572,
+      "n_capped": 2349
+    },
+    "us_ds_power_delta": {
+      "lower": -11.799,
+      "upper": 11.812,
+      "n_capped": 571
+    }
+  },
+  "engineered_features": [
+    "ds_power_rolling_std_1h",
+    "snr_drop_rate_per_hour",
+    "us_ds_power_delta"
+  ],
+  "split": {
+    "split_timestamp": "2024-03-13 01:15:00",
+    "train_rows": 189185,
+    "test_rows": 47310,
+    "train_anomaly_rate": 0.1662,
+    "test_anomaly_rate": 0.1637
+  },
+  "output_files": {
+    "train": "C:\\Users\\gpngur01\\Downloads\\broadband_intelligence_platform\\broadband_intelligence\\data\\processed\\p1_train.parquet",
+    "test": "C:\\Users\\gpngur01\\Downloads\\broadband_intelligence_platform\\broadband_intelligence\\data\\processed\\p1_test.parquet"
+  }
+}

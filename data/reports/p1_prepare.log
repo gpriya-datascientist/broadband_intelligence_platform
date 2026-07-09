@@ -1,0 +1,125 @@
+2026-06-20 22:43:58 | INFO     | __main__                       | ============================================================
+2026-06-20 22:43:58 | INFO     | __main__                       | P1 â€” Data Preparation & Cleaning Pipeline
+2026-06-20 22:43:58 | INFO     | __main__                       | ============================================================
+2026-06-20 22:43:58 | INFO     | __main__                       | Step 1 â€” Loading raw HFC parquet data
+2026-06-20 22:44:11 | INFO     | __main__                       |   Sampled 240000 rows (stratified)
+2026-06-20 22:44:11 | INFO     | __main__                       | Step 2 â€” Schema validation
+2026-06-20 22:44:11 | INFO     | __main__                       |   Schema issues found and corrected: 0
+2026-06-20 22:44:11 | INFO     | __main__                       | Step 3 â€” Range validation (nulling impossible sensor values)
+2026-06-20 22:44:11 | INFO     | __main__                       |   Nulled 22 out-of-range values in us_power_level_dbmv [30, 55]
+2026-06-20 22:44:11 | INFO     | __main__                       |   Nulled 109 out-of-range values in ds_snr_db [20, 50]
+2026-06-20 22:44:11 | INFO     | __main__                       | Step 4 â€” Missing value audit and imputation
+2026-06-20 22:44:11 | INFO     | __main__                       |   Columns with nulls:
+2026-06-20 22:44:11 | INFO     | __main__                       |     us_power_level_dbmv                      22 (0.01%)
+2026-06-20 22:44:11 | INFO     | __main__                       |     ds_snr_db                                109 (0.05%)
+2026-06-20 22:44:12 | INFO     | __main__                       |   Median fallback applied to ds_snr_db (median=37.820)
+2026-06-20 22:44:12 | INFO     | __main__                       |   Nulls remaining after imputation: 0
+2026-06-20 22:44:12 | INFO     | __main__                       | Step 5 â€” Duplicate detection and removal
+2026-06-20 22:44:12 | INFO     | __main__                       |   Exact duplicates removed:           0
+2026-06-20 22:44:12 | INFO     | __main__                       |   Modem+timestamp duplicates removed: 0
+2026-06-20 22:44:12 | INFO     | __main__                       |   Rows after deduplication:           240000
+2026-06-20 22:44:12 | INFO     | __main__                       | Step 6 â€” Outlier capping (IQR, 3x, computed on normal readings)
+2026-06-20 22:44:12 | DEBUG    | __main__                       |   ds_power_level_dbmv clipped to [-7.108, 7.109] â€” 0 values capped
+2026-06-20 22:44:12 | DEBUG    | __main__                       |   us_power_level_dbmv clipped to [28.590, 47.413] â€” 1637 values capped
+2026-06-20 22:44:12 | DEBUG    | __main__                       |   ds_snr_db clipped to [30.914, 45.091] â€” 10102 values capped
+2026-06-20 22:44:12 | DEBUG    | __main__                       |   us_mer_db clipped to [28.916, 43.084] â€” 0 values capped
+2026-06-20 22:44:12 | DEBUG    | __main__                       |   ds_power_rolling_std_1h clipped to [-1.448, 4.157] â€” 8 values capped
+2026-06-20 22:44:12 | DEBUG    | __main__                       |   snr_drop_rate_per_hour clipped to [-2.522, 2.556] â€” 2420 values capped
+2026-06-20 22:44:12 | DEBUG    | __main__                       |   us_ds_power_delta clipped to [-11.747, 11.752] â€” 530 values capped
+2026-06-20 22:44:12 | INFO     | __main__                       |   Total values capped across all columns: 14697
+2026-06-20 22:44:12 | INFO     | __main__                       | Step 7 â€” Recomputing engineered features on cleaned signals
+2026-06-20 22:44:12 | INFO     | __main__                       |   Recomputed: ['ds_power_rolling_std_1h', 'snr_drop_rate_per_hour', 'us_ds_power_delta']
+2026-06-20 22:44:12 | INFO     | __main__                       | Step 8 â€” Time-aware train/test split (80/20)
+2026-06-20 22:44:12 | INFO     | __main__                       |   Split at: 2024-03-12 22:15:00
+2026-06-20 22:44:12 | INFO     | __main__                       |   Train: 191993 rows | anomaly rate: 16.6%
+2026-06-20 22:44:12 | INFO     | __main__                       |   Test : 48007 rows | anomaly rate: 16.8%
+2026-06-20 22:44:12 | INFO     | __main__                       | Step 9 â€” Saving processed data and cleaning report
+2026-06-20 22:44:13 | INFO     | __main__                       |   Saved: p1_train.parquet (191993 rows)
+2026-06-20 22:44:13 | INFO     | __main__                       |   Saved: p1_test.parquet  (48007 rows)
+2026-06-20 22:44:13 | INFO     | __main__                       |   Saved: data/reports/p1_cleaning_report.json
+2026-06-20 22:44:13 | INFO     | __main__                       | ============================================================
+2026-06-20 22:44:13 | INFO     | __main__                       | P1 preparation complete
+2026-06-20 22:44:13 | INFO     | __main__                       | ============================================================
+2026-06-21 13:09:38 | INFO     | __main__                       | ============================================================
+2026-06-21 13:09:38 | INFO     | __main__                       | P1 — Data Preparation & Cleaning Pipeline
+2026-06-21 13:09:38 | INFO     | __main__                       | ============================================================
+2026-06-21 13:09:38 | INFO     | __main__                       | Step 1 — Loading raw HFC parquet data
+2026-06-21 13:09:41 | INFO     | __main__                       |   Sampled 240000 rows (stratified)
+2026-06-21 13:09:41 | INFO     | __main__                       | Step 2 — Schema validation
+2026-06-21 13:09:41 | INFO     | __main__                       |   Schema issues found and corrected: 0
+2026-06-21 13:09:41 | INFO     | __main__                       | Step 3 — Range validation (nulling impossible sensor values)
+2026-06-21 13:09:41 | INFO     | __main__                       |   Nulled 22 out-of-range values in us_power_level_dbmv [30, 55]
+2026-06-21 13:09:41 | INFO     | __main__                       |   Nulled 109 out-of-range values in ds_snr_db [20, 50]
+2026-06-21 13:09:41 | INFO     | __main__                       | Step 4 — Missing value audit and imputation
+2026-06-21 13:09:41 | INFO     | __main__                       |   Columns with nulls:
+2026-06-21 13:09:41 | INFO     | __main__                       |     us_power_level_dbmv                      22 (0.01%)
+2026-06-21 13:09:41 | INFO     | __main__                       |     ds_snr_db                                109 (0.05%)
+2026-06-21 13:09:41 | INFO     | __main__                       |   Median fallback applied to ds_snr_db (median=37.820)
+2026-06-21 13:09:41 | INFO     | __main__                       |   Nulls remaining after imputation: 0
+2026-06-21 13:09:41 | INFO     | __main__                       | Step 5 — Duplicate detection and removal
+2026-06-21 13:09:41 | INFO     | __main__                       |   Exact duplicates removed:           0
+2026-06-21 13:09:41 | INFO     | __main__                       |   Modem+timestamp duplicates removed: 0
+2026-06-21 13:09:41 | INFO     | __main__                       |   Rows after deduplication:           240000
+2026-06-21 13:09:41 | INFO     | __main__                       | Step 6 — Outlier capping (IQR, 3x, computed on normal readings)
+2026-06-21 13:09:41 | DEBUG    | __main__                       |   ds_power_level_dbmv clipped to [-7.108, 7.109] — 0 values capped
+2026-06-21 13:09:41 | DEBUG    | __main__                       |   us_power_level_dbmv clipped to [28.590, 47.413] — 1637 values capped
+2026-06-21 13:09:41 | DEBUG    | __main__                       |   ds_snr_db clipped to [30.914, 45.091] — 10102 values capped
+2026-06-21 13:09:41 | DEBUG    | __main__                       |   us_mer_db clipped to [28.916, 43.084] — 0 values capped
+2026-06-21 13:09:41 | DEBUG    | __main__                       |   ds_power_rolling_std_1h clipped to [-1.448, 4.157] — 8 values capped
+2026-06-21 13:09:41 | DEBUG    | __main__                       |   snr_drop_rate_per_hour clipped to [-2.522, 2.556] — 2420 values capped
+2026-06-21 13:09:41 | DEBUG    | __main__                       |   us_ds_power_delta clipped to [-11.747, 11.752] — 530 values capped
+2026-06-21 13:09:41 | INFO     | __main__                       |   Total values capped across all columns: 14697
+2026-06-21 13:09:41 | INFO     | __main__                       | Step 7 — Recomputing engineered features on cleaned signals
+2026-06-21 13:09:42 | INFO     | __main__                       |   Recomputed: ['ds_power_rolling_std_1h', 'snr_drop_rate_per_hour', 'us_ds_power_delta']
+2026-06-21 13:09:42 | INFO     | __main__                       | Step 8 — Time-aware train/test split (80/20)
+2026-06-21 13:09:42 | INFO     | __main__                       |   Split at: 2024-03-12 22:15:00
+2026-06-21 13:09:42 | INFO     | __main__                       |   Train: 191993 rows | anomaly rate: 16.6%
+2026-06-21 13:09:42 | INFO     | __main__                       |   Test : 48007 rows | anomaly rate: 16.8%
+2026-06-21 13:09:42 | INFO     | __main__                       | Step 9 — Saving processed data and cleaning report
+2026-06-21 13:09:42 | INFO     | __main__                       |   Saved: p1_train.parquet (191993 rows)
+2026-06-21 13:09:42 | INFO     | __main__                       |   Saved: p1_test.parquet  (48007 rows)
+2026-06-21 13:09:42 | INFO     | __main__                       |   Saved: data/reports/p1_cleaning_report.json
+2026-06-21 13:09:42 | INFO     | __main__                       | ============================================================
+2026-06-21 13:09:42 | INFO     | __main__                       | P1 preparation complete
+2026-06-21 13:09:42 | INFO     | __main__                       | ============================================================
+2026-06-21 13:30:07 | INFO     | __main__                       | ============================================================
+2026-06-21 13:30:07 | INFO     | __main__                       | P1 — Data Preparation & Cleaning Pipeline
+2026-06-21 13:30:07 | INFO     | __main__                       | ============================================================
+2026-06-21 13:30:07 | INFO     | __main__                       | Step 1 — Loading raw HFC parquet data
+2026-06-21 13:30:11 | INFO     | __main__                       |   Sampled 240000 rows (stratified)
+2026-06-21 13:30:12 | INFO     | __main__                       | Step 2 — Schema validation
+2026-06-21 13:30:12 | INFO     | __main__                       |   Schema issues found and corrected: 0
+2026-06-21 13:30:12 | INFO     | __main__                       | Step 3 — Range validation (nulling impossible sensor values)
+2026-06-21 13:30:12 | INFO     | __main__                       |   Nulled 20 out-of-range values in us_power_level_dbmv [30, 55]
+2026-06-21 13:30:12 | INFO     | __main__                       |   Nulled 125 out-of-range values in ds_snr_db [20, 50]
+2026-06-21 13:30:12 | INFO     | __main__                       | Step 4 — Missing value audit and imputation
+2026-06-21 13:30:12 | INFO     | __main__                       |   Columns with nulls:
+2026-06-21 13:30:12 | INFO     | __main__                       |     us_power_level_dbmv                      20 (0.01%)
+2026-06-21 13:30:12 | INFO     | __main__                       |     ds_snr_db                                125 (0.05%)
+2026-06-21 13:30:12 | INFO     | __main__                       |   Nulls remaining after imputation: 0
+2026-06-21 13:30:12 | INFO     | __main__                       | Step 5 — Duplicate detection and removal
+2026-06-21 13:30:12 | INFO     | __main__                       |   Exact duplicates removed:           3505
+2026-06-21 13:30:12 | INFO     | __main__                       |   Modem+timestamp duplicates removed: 0
+2026-06-21 13:30:12 | INFO     | __main__                       |   Rows after deduplication:           236495
+2026-06-21 13:30:12 | INFO     | __main__                       | Step 6 — Outlier capping (IQR, 3x, computed on normal readings)
+2026-06-21 13:30:12 | DEBUG    | __main__                       |   ds_power_level_dbmv clipped to [-7.082, 7.065] — 1 values capped
+2026-06-21 13:30:12 | DEBUG    | __main__                       |   us_power_level_dbmv clipped to [28.535, 47.463] — 1618 values capped
+2026-06-21 13:30:12 | DEBUG    | __main__                       |   ds_snr_db clipped to [30.912, 45.101] — 9736 values capped
+2026-06-21 13:30:12 | DEBUG    | __main__                       |   us_mer_db clipped to [28.907, 43.089] — 1 values capped
+2026-06-21 13:30:12 | DEBUG    | __main__                       |   ds_power_rolling_std_1h clipped to [-1.454, 4.159] — 10 values capped
+2026-06-21 13:30:12 | DEBUG    | __main__                       |   snr_drop_rate_per_hour clipped to [-2.539, 2.572] — 2349 values capped
+2026-06-21 13:30:12 | DEBUG    | __main__                       |   us_ds_power_delta clipped to [-11.799, 11.812] — 571 values capped
+2026-06-21 13:30:12 | INFO     | __main__                       |   Total values capped across all columns: 14286
+2026-06-21 13:30:12 | INFO     | __main__                       | Step 7 — Recomputing engineered features on cleaned signals
+2026-06-21 13:30:13 | INFO     | __main__                       |   Recomputed: ['ds_power_rolling_std_1h', 'snr_drop_rate_per_hour', 'us_ds_power_delta']
+2026-06-21 13:30:13 | INFO     | __main__                       | Step 8 — Time-aware train/test split (80/20)
+2026-06-21 13:30:13 | INFO     | __main__                       |   Split at: 2024-03-13 01:15:00
+2026-06-21 13:30:13 | INFO     | __main__                       |   Train: 189185 rows | anomaly rate: 16.6%
+2026-06-21 13:30:13 | INFO     | __main__                       |   Test : 47310 rows | anomaly rate: 16.4%
+2026-06-21 13:30:13 | INFO     | __main__                       | Step 9 — Saving processed data and cleaning report
+2026-06-21 13:30:13 | INFO     | __main__                       |   Saved: p1_train.parquet (189185 rows)
+2026-06-21 13:30:13 | INFO     | __main__                       |   Saved: p1_test.parquet  (47310 rows)
+2026-06-21 13:30:13 | INFO     | __main__                       |   Saved: data/reports/p1_cleaning_report.json
+2026-06-21 13:30:13 | INFO     | __main__                       | ============================================================
+2026-06-21 13:30:13 | INFO     | __main__                       | P1 preparation complete
+2026-06-21 13:30:13 | INFO     | __main__                       | ============================================================

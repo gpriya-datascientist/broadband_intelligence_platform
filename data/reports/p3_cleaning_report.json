@@ -1,0 +1,121 @@
+{
+  "schema_issues": [],
+  "business_rule_violations": {},
+  "rows_removed_by_rules": 0,
+  "null_audit": {
+    "customer_id": 0,
+    "contract_type": 0,
+    "tenure_months": 0,
+    "monthly_charges": 0,
+    "payment_method": 0,
+    "tech_support_flag": 0,
+    "internet_service_type": 0,
+    "paperless_billing_flag": 0,
+    "service_call_frequency_30d": 0,
+    "charge_per_tenure_ratio": 0,
+    "anomaly_count_30d": 0,
+    "anomaly_severity_score": 0,
+    "wifi_breach_count_30d": 0,
+    "days_since_last_anomaly": 0,
+    "churn": 0
+  },
+  "duplicates_removed": {
+    "exact_rows": 0,
+    "customer_id_duplicates": 0,
+    "rows_after": 500
+  },
+  "class_balance": {
+    "n_stay": 370,
+    "n_churn": 130,
+    "churn_rate": 0.26,
+    "class_weights": {
+      "0": 1.0,
+      "1": 2.8462
+    },
+    "strategy": "class-weighted binary cross-entropy loss"
+  },
+  "categorical_encoding": {
+    "contract_type": {
+      "Month-to-month": 0,
+      "One year": 1,
+      "Two year": 2
+    },
+    "payment_method": {
+      "Bank transfer": 0,
+      "Credit card": 1,
+      "Electronic check": 2,
+      "Mailed check": 3
+    },
+    "internet_service_type": {
+      "DSL": 0,
+      "Fiber optic": 1,
+      "No": 2
+    }
+  },
+  "correlations_with_target": {
+    "contract_type": -0.4068,
+    "charge_per_tenure_ratio": 0.2672,
+    "tenure_months": -0.2281,
+    "monthly_charges": 0.1671,
+    "tech_support_flag": -0.0888,
+    "days_since_last_anomaly": -0.0444,
+    "paperless_billing_flag": -0.0441,
+    "internet_service_type": -0.0422,
+    "anomaly_count_30d": 0.0388,
+    "payment_method": -0.0338,
+    "anomaly_severity_score": 0.0272,
+    "wifi_breach_count_30d": 0.0176,
+    "service_call_frequency_30d": 0.0134
+  },
+  "high_corr_pairs": [],
+  "split": {
+    "train_rows": 340,
+    "train_churn_rate": 0.2588,
+    "val_rows": 60,
+    "val_churn_rate": 0.2667,
+    "test_rows": 100,
+    "test_churn_rate": 0.26,
+    "strategy": "stratified (preserves churn class ratio)"
+  },
+  "scaling": {
+    "method": "StandardScaler",
+    "fit_on": "train only (no leakage)",
+    "feature_means": {
+      "contract_type": 0.6588,
+      "payment_method": 1.5324,
+      "internet_service_type": 0.8618,
+      "tenure_months": 21.6824,
+      "monthly_charges": 64.3141,
+      "charge_per_tenure_ratio": 11.3562,
+      "tech_support_flag": 0.6235,
+      "paperless_billing_flag": 0.6088,
+      "service_call_frequency_30d": 1.45,
+      "anomaly_count_30d": 679.4941,
+      "anomaly_severity_score": 0.9838,
+      "wifi_breach_count_30d": 164.2882,
+      "days_since_last_anomaly": 0.3647
+    },
+    "feature_stds": {
+      "contract_type": 0.7941,
+      "payment_method": 1.0774,
+      "internet_service_type": 0.6998,
+      "tenure_months": 23.4026,
+      "monthly_charges": 20.2896,
+      "charge_per_tenure_ratio": 17.8898,
+      "tech_support_flag": 0.4845,
+      "paperless_billing_flag": 0.488,
+      "service_call_frequency_30d": 1.2129,
+      "anomaly_count_30d": 95.1602,
+      "anomaly_severity_score": 0.042,
+      "wifi_breach_count_30d": 25.8925,
+      "days_since_last_anomaly": 0.6249
+    }
+  },
+  "output_files": {
+    "train": "C:\\Users\\gpngur01\\Downloads\\broadband_intelligence_platform\\broadband_intelligence\\data\\processed\\p3_train.parquet",
+    "val": "C:\\Users\\gpngur01\\Downloads\\broadband_intelligence_platform\\broadband_intelligence\\data\\processed\\p3_val.parquet",
+    "test": "C:\\Users\\gpngur01\\Downloads\\broadband_intelligence_platform\\broadband_intelligence\\data\\processed\\p3_test.parquet",
+    "scaler": "C:\\Users\\gpngur01\\Downloads\\broadband_intelligence_platform\\broadband_intelligence\\data\\processed\\p3_scaler.joblib",
+    "encoders": "C:\\Users\\gpngur01\\Downloads\\broadband_intelligence_platform\\broadband_intelligence\\data\\processed\\p3_encoders.joblib"
+  }
+}
