@@ -1,14 +1,3 @@
-# LLM Evaluation for CS1/CS2 Programming Education — Research Table
-### Focus: Programming Task Generation · Automated Assessment · Educational Benchmarking
-### Ordered: Papers Without Benchmark First, Papers With Benchmark Second
-
-**Change log (this revision):**
-- Removed 3 papers unrelated to programming education (IndicGenBench, ILAKKANAM/Tamil, TaskBench) — no reusable evaluation method for our benchmark.
-- Removed 1 duplicate — "Integrating Large Language Models and Evaluating Student Outcomes in a CS1 Course" is the arXiv preprint of "Evaluating CS1-LLM" (same authors, same study); kept the published version.
-- Corrected the models-tested list for two entries (now #1 and #5) after reading the full papers — the previous entries listed models that were only referenced in background/related work, not actually tested.
-- Recounted "Most Common Models" based only on models actually tested per paper (not background mentions), now over 26 papers.
-
----
 
 ## SECTION A — Papers Without a Benchmark
 
@@ -48,24 +37,4 @@
 | 25 | A Survey on Evaluating LLMs in Code Generation Tasks | No comprehensive review of evaluation methods and metrics for LLM code generation covering correctness, efficiency, readability, and user experience together | Survey — reviews evaluation of GPT, Codex, CodeBERT, StarCoder, and others | Surveys and compares evaluation metrics (correctness, efficiency, readability, expert review, user experience) and benchmark datasets; analyses performance across compilation rates, unit test pass rates, and efficiency metrics | Reviews HumanEval, APPS, MBPP, CodeXGLUE and others (survey — no own benchmark created) | No explicit RQs stated. Objective: Provide a comprehensive review of current methods and metrics for evaluating LLM performance in code generation and identify limitations of existing benchmarks |
 | 26 | Evaluating Copilot on CS1 Code Writing Problems with Suppressed Specifications | Copilot solves standard CS1 problems easily; instructors need LLM-resistant problem variants to maintain academic integrity | GitHub Copilot | 153 CS1 Python problems from CodeCheck; tested under full specification and suppressed specification (function/argument names only); measured number of clarifying examples needed to reach correct solution | CodeCheck repository (153 CS1 Python problems — existing repository, not own benchmark) | RQ1: How often can Copilot correctly solve CodeCheck problems with suppressed specifications and no examples? RQ2: When Copilot fails without examples, how many examples does it need? RQ3: For what categories of problems does Copilot fail despite numerous clarifying examples? |
 
----
 
-## Most Common Models Across the 26 Retained Papers
-*(Counted by models actually tested per paper — not models only mentioned in background/related work.)*
-
-| Rank | Model | No. of Papers | Type |
-|------|-------|--------------|------|
-| 1 | GPT-4 / ChatGPT (incl. GPT-4o, GPT-4-turbo) | 16 | Proprietary |
-| 2 | LLaMA / Llama2 | 7 | Open-source |
-| 3 | GPT-3 / GPT-3.5 | 6 | Proprietary |
-| 3 | Gemini | 6 | Proprietary |
-| 3 | Codex | 6 | Proprietary (deprecated) |
-| 6 | Claude | 5 | Proprietary |
-| 7 | Mistral | 4 | Open-source |
-| 7 | CodeBERT | 4 | Open-source |
-| 7 | StarCoder | 4 | Open-source |
-| 10 | GitHub Copilot | 3 | Proprietary |
-| 11 | DeepSeek | 2 | Open-source |
-| 11 | Qwen | 2 | Open-source |
-| 11 | WizardCoder | 2 | Open-source |
-| 11 | BERT | 2 | Open-source |
