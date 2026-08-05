@@ -14,13 +14,13 @@ The plan says pvl serve polls the backend's health check for up to ~120 seconds 
 pvl status/pvl stop are described as checking a saved process ID number against whether something's running. The problem: on both Windows and Linux, process ID numbers get reused once a program closes — so if your backend crashed a while ago, the operating system could hand that exact same ID number to a completely unrelated program later. Checking only "does something exist with this ID" isn't enough — it needs an extra check (like also confirming the running program's name matches) to avoid falsely reporting an unrelated program as "your backend is running."
 
 
-2e) The zip-diagnostics tool (pvl doctor --bundle) might not work reliably on Mono specifically
+2c) The zip-diagnostics tool (pvl doctor --bundle) might not work reliably on Mono specifically
 The plan mentions using a built-in tool to create zip files, describing it as "in-box on net48/Mono" — but the compression support built into Mono has historically had inconsistent behavior across different Mono versions. Since this whole plan explicitly develops and tests on Mono before ever touching real Windows, this specific feature is worth testing directly and early, rather than assuming it behaves identically to real .NET Framework.
 
-The 15-second wait may not be enough. We already know from earlier discussion that the very first startup can take up to ~120 seconds because of database migrations and model loading — a mid-operation shutdown (say, while training/optimizing) could plausibly need longer than 15 seconds to wrap up safely. Worth confirming this number against a real worst-case, not just picking it arbitrarily.
+3a) The 15-second wait may not be enough. We already know from earlier discussion that the very first startup can take up to ~120 seconds because of database migrations and model loading — a mid-operation shutdown (say, while training/optimizing) could plausibly need longer than 15 seconds to wrap up safely. Worth confirming this number against a real worst-case, not just picking it arbitrarily.
 
-2d) "Log files that auto-rotate by size" needs care on Windows specifically
+3b) "Log files that auto-rotate by size" needs care on Windows specifically
 The plan says log output gets saved into files that automatically rotate once they get too big. This sounds simple, but doing this correctly while a file is actively being written to is trickier on Windows than on Linux — Windows can refuse to let you rename or replace a file that's still open/in-use by an active writer, which Linux normally allows without issue. This detail isn't addressed, and it's specifically a Windows-vs-Linux difference worth testing directly, not assuming will "just work" the same on both
 
-Frontend shutdown is treated as "just kill it," which is probably fine — but worth confirming it truly has no unsaved state (e.g., no pending writes, no open upload streams) before assuming a plain kill is always safe.
+3c) Frontend shutdown is treated as "just kill it," which is probably fine — but worth confirming it truly has no unsaved state (e.g., no pending writes, no open upload streams) before assuming a plain kill is always safe.
 
